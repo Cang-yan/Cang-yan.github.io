@@ -38,3 +38,9 @@ Pages 的 Source 必须设为 **GitHub Actions**，不要用分支部署。
 - 这个仓库是公开的，**Actions 日志也是公开的**。workflow 里不要加 `-v`、`set -x`、
   也不要 `ls content`，否则私仓的文件名会出现在日志里。
 - 公开仓库连续 60 天没有提交，GitHub 会自动停掉定时任务，且不会报错。偶尔手动跑一次。
+
+## 一个容易踩的坑
+
+**不要把 `content/` 写进 `.gitignore`。** Quartz 的 glob 会读取 `.gitignore`，
+一旦忽略 `content/`，构建时就会"Found 0 input files"，站点直接空白。
+本地用 `.git/info/exclude` 忽略它（已在仓库外配置好），这样 git 不会提交、Quartz 仍能读到。
