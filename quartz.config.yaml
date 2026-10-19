@@ -178,7 +178,6 @@ plugins:
     enabled: true
     options:
       links:
-        Gitee: https://gitee.com/calm-capibara
         GitHub: https://github.com/Cang-yan
     layout:
       position: footer
