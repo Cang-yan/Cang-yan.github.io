@@ -1,3 +1,30 @@
 @use "./variables.scss" as *;
 
 // put your custom CSS here!
+
+/* 「最近的笔记」：标题与日期排在同一行，日期靠右对齐 */
+.recent-notes > ul.recent-ul > li .section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0 1.5rem;
+}
+
+.recent-notes > ul.recent-ul > li .section > .desc {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* 提高优先级以覆盖插件自带的 margin: 0 0 .5rem 0 */
+html .recent-notes > ul.recent-ul > li .section > .meta {
+  flex: none;
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.55;
+  white-space: nowrap;
+}
+
+.recent-notes > ul.recent-ul > li .section > .tags {
+  flex-basis: 100%;
+}
