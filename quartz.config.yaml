@@ -13,12 +13,12 @@ configuration:
     - .obsidian
     - .trash
   theme:
-    fontOrigin: googleFonts
+    fontOrigin: local
     cdnCaching: true
     typography:
-      header: Schibsted Grotesk
-      body: Source Sans Pro
-      code: IBM Plex Mono
+      header: LXGW ZhenKai GB
+      body: LXGW ZhenKai GB
+      code: JetBrains Mono
     colors:
       lightMode:
         light: "#faf8f8"
@@ -116,7 +116,7 @@ plugins:
       position: left
       priority: 50
   - source: "@quartz-community/graph"
-    enabled: true
+    enabled: false
     layout:
       position: right
       priority: 10
@@ -130,6 +130,8 @@ plugins:
         grow: true
   - source: "@quartz-community/backlinks"
     enabled: true
+    options:
+      hideWhenEmpty: false
     layout:
       position: right
       priority: 50
