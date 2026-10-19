@@ -58,8 +58,9 @@ export default (() => {
           </>
         )}
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossOrigin="anonymous" />
-        {/* 霞鹜臻楷 webfont（ZSFT CDN，分片按需加载） */}
-        <link rel="stylesheet" href="https://fontsapi.zeoseven.com/2/main/result.css" />
+        {/* Maple Mono CN webfont（ZSFT CDN，分片按需加载；Regular + Bold） */}
+        <link rel="stylesheet" href="https://fontsapi.zeoseven.com/442/main/result.css" />
+        <link rel="stylesheet" href="https://fontsapi.zeoseven.com/442/bold/result.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <meta name="og:site_name" content={cfg.pageTitle}></meta>

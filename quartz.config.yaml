@@ -16,9 +16,9 @@ configuration:
     fontOrigin: local
     cdnCaching: true
     typography:
-      header: LXGW ZhenKai GB
-      body: LXGW ZhenKai GB
-      code: JetBrains Mono
+      header: Maple Mono NF CN
+      body: Maple Mono NF CN
+      code: Maple Mono NF CN
     colors:
       lightMode:
         light: "#faf8f8"
