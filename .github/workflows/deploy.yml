@@ -1,0 +1,66 @@
+name: Deploy blog
+
+on:
+  schedule:
+    # UTC 20:00 = 北京时间 04:00
+    - cron: "0 20 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Fetch content from Gitee
+        env:
+          GITEE_DEPLOY_KEY: ${{ secrets.GITEE_DEPLOY_KEY }}
+        run: |
+          set -eu
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$GITEE_DEPLOY_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -t ed25519 gitee.com >> ~/.ssh/known_hosts 2>/dev/null
+
+          git clone --depth=1 --single-branch \
+            git@gitee.com:calm-capibara/notes.git "$RUNNER_TEMP/vault"
+
+          if [ ! -d "$RUNNER_TEMP/vault/blog" ]; then
+            echo "::error::Gitee 仓库里没有 blog/ 目录"
+            exit 1
+          fi
+
+          mkdir -p content
+          cp -a "$RUNNER_TEMP/vault/blog/." content/
+          find content \( -name '.DS_Store' -o -name '*.bak' -o -name '*.tmp' \) -delete
+
+      - run: npm ci
+      - run: npx quartz build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
