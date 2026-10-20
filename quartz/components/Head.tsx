@@ -58,8 +58,8 @@ export default (() => {
           </>
         )}
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossOrigin="anonymous" />
-        {/* 正文/标题：霞鹜臻楷；代码：Maple Mono CN（均为 ZSFT CDN 分片按需加载） */}
-        <link rel="stylesheet" href="https://fontsapi.zeoseven.com/2/main/result.css" />
+        {/* 正文/标题：霞鹜文楷 GB；代码：Maple Mono CN（均为 ZSFT CDN 分片按需加载） */}
+        <link rel="stylesheet" href="https://fontsapi.zeoseven.com/292/gb-regular/result.css" />
         <link rel="stylesheet" href="https://fontsapi.zeoseven.com/442/main/result.css" />
         <link rel="stylesheet" href="https://fontsapi.zeoseven.com/442/bold/result.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />

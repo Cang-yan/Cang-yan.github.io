@@ -2,18 +2,6 @@
 
 // put your custom CSS here!
 
-/* 霞鹜臻楷只有一个字重(400)，标题、链接的 600/700 是浏览器描粗出来的，看着又重又糊。
-   这里还原成 400；正文里手写的 **加粗** 仍保留加粗效果。 */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-a {
-  font-weight: 400;
-}
-
 /* 文件夹/标签页的笔记列表：日期列原本被 fit-content(8em) 卡住，会折成两行 */
 html li.section-li > .section {
   grid-template-columns: max-content 3fr 1fr;

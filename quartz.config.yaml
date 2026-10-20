@@ -16,8 +16,8 @@ configuration:
     fontOrigin: local
     cdnCaching: true
     typography:
-      header: LXGW ZhenKai GB
-      body: LXGW ZhenKai GB
+      header: LXGW WenKai GB
+      body: LXGW WenKai GB
       code: Maple Mono NF CN
     colors:
       lightMode:
