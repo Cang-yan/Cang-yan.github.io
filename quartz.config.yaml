@@ -75,7 +75,7 @@ plugins:
   - source: "@quartz-community/crawl-links"
     enabled: true
     options:
-      markdownLinkResolution: relative
+      markdownLinkResolution: shortest
       prettyLinks: false
     order: 60
   - source: "@quartz-community/description"
@@ -187,8 +187,8 @@ plugins:
   - source: "@quartz-community/recent-notes"
     enabled: true
     layout:
-      position: beforeBody
-      priority: 30
+      position: left
+      priority: 60
   - source: "@quartz-community/spacer"
     enabled: true
     options: {}
