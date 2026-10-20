@@ -1,3 +1,18 @@
 @use "./variables.scss" as *;
 
 // put your custom CSS here!
+
+/* 文件夹/标签页的笔记列表：日期列原本被 fit-content(8em) 卡住，会折成两行 */
+html li.section-li > .section {
+  grid-template-columns: max-content 3fr 1fr;
+}
+
+html li.section-li > .section .meta {
+  white-space: nowrap;
+  min-width: 8.5em;
+}
+
+/* 悬浮预览里的同款列表 */
+html .popover li.section-li > .section {
+  grid-template-columns: max-content 1fr !important;
+}
