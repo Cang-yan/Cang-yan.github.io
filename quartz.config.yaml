@@ -187,8 +187,8 @@ plugins:
   - source: "@quartz-community/recent-notes"
     enabled: true
     layout:
-      position: left
-      priority: 60
+      position: right
+      priority: 5
   - source: "@quartz-community/spacer"
     enabled: true
     options: {}
