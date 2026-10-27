@@ -18,6 +18,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Shanghai
     steps:
       - uses: actions/checkout@v7
 
@@ -36,7 +38,7 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -t ed25519 gitee.com >> ~/.ssh/known_hosts 2>/dev/null
 
-          git clone --depth=1 --single-branch \
+          git clone --single-branch \
             git@gitee.com:calm-capibara/notes.git "$RUNNER_TEMP/vault"
 
           if [ ! -d "$RUNNER_TEMP/vault/blog" ]; then
@@ -47,6 +49,26 @@ jobs:
           mkdir -p content
           cp -a "$RUNNER_TEMP/vault/blog/." content/
           find content \( -name '.DS_Store' -o -name '*.bak' -o -name '*.tmp' \) -delete
+
+      - name: Restore article dates from Git
+        run: |
+          python3 - <<'PY'
+          import os
+          import subprocess
+          from pathlib import Path
+
+          vault = Path(os.environ["RUNNER_TEMP"]) / "vault"
+          for article in Path("content").rglob("*.md"):
+              source = Path("blog") / article.relative_to("content")
+              timestamp = subprocess.check_output(
+                  ["git", "-C", str(vault), "log", "-1", "--format=%ct", "--", str(source)],
+                  text=True,
+              ).strip()
+              if not timestamp:
+                  raise RuntimeError(f"No Git commit date found for {source}")
+              modified = int(timestamp)
+              os.utime(article, (modified, modified))
+          PY
 
       - run: npm ci
       - run: npx quartz build

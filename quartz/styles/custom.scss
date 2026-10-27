@@ -2,6 +2,25 @@
 
 // put your custom CSS here!
 
+/* 所有日期按构建环境的 Asia/Shanghai 时区显示，来源为文章最后一次 Git 提交。 */
+.content-meta > time::before {
+  content: "最后提交：";
+}
+
+.content-meta > time::after {
+  content: "（北京时间 UTC+8）";
+}
+
+.recent-notes > h3::after,
+.section-ul::before {
+  content: "最后提交日期 · 北京时间 UTC+8";
+  display: block;
+  margin-block: 0.25rem 0.5rem;
+  color: var(--gray);
+  font-size: 0.8rem;
+  font-weight: normal;
+}
+
 /* 文件夹/标签页的笔记列表：日期列原本被 fit-content(8em) 卡住，会折成两行 */
 html li.section-li > .section {
   grid-template-columns: max-content 3fr 1fr;

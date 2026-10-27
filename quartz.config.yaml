@@ -45,8 +45,8 @@ plugins:
     enabled: true
     options:
       defaultDateType: modified
+      # The deployment restores file modification times from each article's last Git commit.
       priority:
-        - frontmatter
         - filesystem
     order: 10
   - source: "@quartz-community/syntax-highlighting"
